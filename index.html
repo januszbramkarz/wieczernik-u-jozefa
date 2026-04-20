@@ -35,72 +35,64 @@
                 <a href="/nuty/wielki_post/swietyBoze_biernacki.pdf" class="btn-download">Pobierz PDF</a>
             </div>
 
-            <div class="note-card" data-category="Wielkanoc">
-                <div class="note-info">
-                    <h3>Zwycięzca śmierci</h3>
-                    <p>Kategoria: Wielkanoc | Chorał</p>
+            <div class="notes-list" id="notesList">
+                <div class="note-card" data-category="Wielki Post">
+                    <div class="note-info">
+                        <h3>O grobie chwalebny</h3>
+                        <p>Kategoria: Wielki Post | Głos: 4</p>
+                    </div>
+                    <a href="/nuty/wielki_post/oGrobieChwalebny.pdf" class="btn-download">Pobierz PDF</a>
                 </div>
-                <a href="link-do-pdf-2.pdf" class="btn-download">Pobierz PDF</a>
+
+                <div class="coffee-section">
+                    <h3>Podoba Ci się mój projekt?</h3>
+                    <p>Pomóż mi utrzymać serwer i dodawać nowe nuty.</p>
+                    <a href="https://buycoffee.to/twoj-login" target="_blank" class="coffee-btn">☕ Postaw mi kawę</a>
+                </div>
             </div>
 
-            <div class="note-card" data-category="Części stałe">
-                <div class="note-info">
-                    <h3>Kyrie - Msza VIII (De Angelis)</h3>
-                    <p>Kategoria: Części stałe | Łacina</p>
-                </div>
-                <a href="link-do-pdf-3.pdf" class="btn-download">Pobierz PDF</a>
-            </div>
-        </div>
+            <footer>
+                &copy; 2026 Wieczernik u Józefa. Materiały udostępniane są w celach edukacyjnych.
+                <br><a href="#">Zgłoś naruszenie praw autorskich</a>
+            </footer>
 
-        <div class="coffee-section">
-            <h3>Podoba Ci się mój projekt?</h3>
-            <p>Pomóż mi utrzymać serwer i dodawać nowe nuty.</p>
-            <a href="https://buycoffee.to/twoj-login" target="_blank" class="coffee-btn">☕ Postaw mi kawę</a>
-        </div>
-    </div>
+            <script>
+                // FUNKCJA WYSZUKIWANIA
+                function filterNotes() {
+                let input = document.getElementById('searchInput').value.toLowerCase();
+                let cards = document.getElementsByClassName('note-card');
 
-    <footer>
-        &copy; 2026 Wieczernik u Józefa. Materiały udostępniane są w celach edukacyjnych.
-        <br><a href="#">Zgłoś naruszenie praw autorskich</a>
-    </footer>
+                for (let card of cards) {
+                let title = card.querySelector('h3').innerText.toLowerCase();
+                if (title.includes(input)) {
+                card.style.display = "";
+                } else {
+                card.style.display = "none";
+                }
+                }
+                }
 
-    <script>
-        // FUNKCJA WYSZUKIWANIA
-        function filterNotes() {
-        let input = document.getElementById('searchInput').value.toLowerCase();
-        let cards = document.getElementsByClassName('note-card');
+                // FUNKCJA FILTROWANIA KATEGORII
+                function filterCategory(category) {
+                let cards = document.getElementsByClassName('note-card');
+                let buttons = document.getElementsByClassName('filter-btn');
 
-        for (let card of cards) {
-        let title = card.querySelector('h3').innerText.toLowerCase();
-        if (title.includes(input)) {
-        card.style.display = "";
-        } else {
-        card.style.display = "none";
-        }
-        }
-        }
+                // Zmiana aktywnego przycisku
+                for (let btn of buttons) {
+                btn.classList.remove('active');
+                if (btn.innerText === category) btn.classList.add('active');
+                }
 
-        // FUNKCJA FILTROWANIA KATEGORII
-        function filterCategory(category) {
-        let cards = document.getElementsByClassName('note-card');
-        let buttons = document.getElementsByClassName('filter-btn');
-
-        // Zmiana aktywnego przycisku
-        for (let btn of buttons) {
-        btn.classList.remove('active');
-        if (btn.innerText === category) btn.classList.add('active');
-        }
-
-        // Filtrowanie kart
-        for (let card of cards) {
-        if (category === 'Wszystkie' || card.getAttribute('data-category') === category) {
-        card.style.display = "";
-        } else {
-        card.style.display = "none";
-        }
-        }
-        }
-    </script>
+                // Filtrowanie kart
+                for (let card of cards) {
+                if (category === 'Wszystkie' || card.getAttribute('data-category') === category) {
+                card.style.display = "";
+                } else {
+                card.style.display = "none";
+                }
+                }
+                }
+            </script>
 
 </body>
 </html>
